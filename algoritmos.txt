@@ -1,0 +1,15 @@
+constant
+Constant,EuclideanDistance,LinearSearchConstant,MatrixMultiplicationConstant
+log
+BinaryExponentiation,BinarySearch,FastExponentiation,Logarithmic
+n
+FibonacciIterative,Linear,LinearSearch,MinMax
+nlogn
+HeapSort,Linearithmic,MergeSort,Skyline
+
+n^2
+BubleSort,CatalanNumber,Quadratic,SelectionSort
+n^3
+Cubic,Floyd,MatrixMultiplication,Warshall
+2^n
+BipartiteGraphBruteForce,BruteForceKnapsack,Exponential,FibonacciRecursive

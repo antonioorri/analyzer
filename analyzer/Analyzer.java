@@ -114,12 +114,60 @@ public class Analyzer implements Runnable {
         //"Exponential" tam = 2 , n = 3
         //"FibonacciRecursive" tam = 2, n=11
         
-        int tam=10;
+        
+        int tam=10;long n=10000 ;
+        if(algorithm.getComplexity().equalsIgnoreCase("1")){
+             tam=10;
+             n =100000;
+        }else if(algorithm.getComplexity().equalsIgnoreCase("log(n)")){
+            tam=12; n =10000;
+        }else if(algorithm.getName().equalsIgnoreCase("LinearSearch")){
+            tam =10; n = 10000;
+        }else if(algorithm.getName().equalsIgnoreCase("MinMax")){
+            tam =10; n = 10000;
+        }else if(algorithm.getName().equalsIgnoreCase("FibonacciIterative")){
+            tam =10; n = 50;
+        }else if(algorithm.getName().equalsIgnoreCase("Linear")){
+            tam =10; n = 50;
+        }else if(algorithm.getName().equalsIgnoreCase("HeapSort")){
+            tam = 7 ; n = 12000;
+        }else if(algorithm.getName().equalsIgnoreCase("Linearithmic")){
+            tam =7; n = 31;
+        }else if(algorithm.getName().equalsIgnoreCase("MergeSort")){
+            tam =7; n = 30000;
+        }else if(algorithm.getName().equalsIgnoreCase("Skyline")){
+            tam =7; n = 100;
+        }else if(algorithm.getName().equalsIgnoreCase("CatalanNumber")){
+            tam =5; n = 400;
+        }else if(algorithm.getName().equalsIgnoreCase("BubleSort")){
+            tam =5; n = 170;
+        }else if(algorithm.getName().equalsIgnoreCase("Quadratic")){
+            tam =4; n = 5;
+        }else if(algorithm.getName().equalsIgnoreCase("SelectionSort")){
+            tam =6; n = 90;
+        }else if(algorithm.getName().equalsIgnoreCase("Cubic")){
+            tam =4; n = 2;
+        }else if(algorithm.getName().equalsIgnoreCase("Floyd")){
+            tam =4; n = 37;
+        }else if(algorithm.getName().equalsIgnoreCase("MatrixMultiplication")){
+            tam =4; n = 120;
+        }else if(algorithm.getName().equalsIgnoreCase("Warshall")){
+            tam =4; n = 30;
+        }else if(algorithm.getName().equalsIgnoreCase("BruteForceKnapsack")){
+            tam =2; n = 5;
+        }else if(algorithm.getName().equalsIgnoreCase("Exponential")){
+            tam =2; n = 3;
+        }else if(algorithm.getName().equalsIgnoreCase("FibonacciRecursive")){
+            tam =2; n = 11;
+        }else if(algorithm.getName().equalsIgnoreCase("BruteForceKnapsack")){
+            tam =2; n = 2;
+        }
+        
         //String[] complexities = {"1","log(n)","n","n*log(n)","n^2","n^3","2^n"};
         long[] times =new long[tam];
         Chronometer chrono = new Chronometer();
         chrono.pause();
-        long n =100000;
+        
         long n2;
         for(int i = 1 ; i<=tam;i++){
             n2=n*(i+i);
@@ -151,6 +199,7 @@ public class Analyzer implements Runnable {
             t2n[i-1]=times[i-1]/ (long)(Math.pow(2,Math.pow(2,i)));
            // System.out.println();
         }
+        
         //System.out.println(times);
         System.out.println("log");
         show_times(tlog);
@@ -178,6 +227,7 @@ public class Analyzer implements Runnable {
 
                 System.out.println("-------------------------");
         System.out.println("");
+        
 
         String complejidad="1";
         if((calcularDesviacionTipica(times)/1000) <0.1){
@@ -198,68 +248,5 @@ public class Analyzer implements Runnable {
         
         return complejidad;
     }
-    static String findComplexityOf1(Algorithm algorithm, long maxExecutionTime) {
-        // Modify the content of this method in order to find the complexity of the given algorithm.
-        // You can delete any of the following instructions if you don't need them. You can also
-        // add new instructions or new methods, but you cannot modify the signature of this method
-        // nor the existing methods.
-        //numero catalan tam=5,n=300
-        //CONSTANT--
-        //CUBIC N^3 --
-        int tam=10;
-        String[] complexity = {"1","log(n)","n","n*log(n)","n^2","n^3","2^n"};
-        long[] times =new long[tam];
-        Chronometer chrono = new Chronometer();
-        chrono.pause();
-        long n = 5;
-        long n2;
-        for(int i = 1 ; i<=tam;i++){
-            n2=n*(i+i);
-            algorithm.init(n2);
-            chrono.resume();
-            algorithm.run();
-            long time = chrono.getElapsedTime();
-            times[i-1]=time;
-            chrono.pause();
-            //System.out.println(i);
-        }
-        //System.out.println();
-        show_times(times);
-        //ya tenemos los tiempos, ahora calcular los resultados teoricos.
-
-        long[] tlog= new long[tam];
-        long[] tn = new long[tam];
-        long[] tnlogn = new long[tam];
-        long[] tn2 = new long[tam];
-        long[] tn3 = new long[tam];
-        long[] t2n = new long[tam];
-        for(int i = 1; i<=tam;i++){
-            //System.out.println(i);
-            tlog[i-1]=times[i-1]/(long)(Math.log(Math.pow(2,((i+4)))));
-            tn[i-1]=times[i-1]/ (long)(Math.pow(2,i));
-            tnlogn[i-1]=times[i-1]/ (long)((Math.pow(2,i))*Math.log(Math.pow(2,i)+1)) ;
-            tn2[i-1]=times[i-1]/(long)(Math.pow(Math.pow(2,i),2));
-            tn3[i-1]=times[i-1]/(long)(Math.pow(Math.pow(2,i),3));
-            t2n[i-1]=times[i-1]/ (long)(Math.pow(2,Math.pow(2,i)));
-           // System.out.println();
-        }
-        //System.out.println(times);
-        System.out.println("log");
-        show_times(tlog);
-        System.out.println("n");
-        show_times(tn);
-        System.out.println("n*log");
-        show_times(tnlogn);
-        System.out.println("n^2");
-        show_times(tn2);
-        System.out.println("n^3");
-        show_times(tn3);
-        System.out.println("2^n");
-        show_times(t2n);
-
-        /*if(time > 0.1) {
-            complexity = "log(n)";
-        }*/
-        return "n";
-    }
+    
 }

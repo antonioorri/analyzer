@@ -121,53 +121,53 @@ public class Analyzer implements Runnable {
              n =100000;
         }else if(algorithm.getComplexity().equalsIgnoreCase("log(n)")){
             tam=12; n =10000;
-        }else if(algorithm.getName().equalsIgnoreCase("LinearSearch")){
+        }else if(algorithm.getName().equalsIgnoreCase("Linear Search")){
             tam =10; n = 10000;
         }else if(algorithm.getName().equalsIgnoreCase("MinMax")){
             tam =10; n = 10000;
-        }else if(algorithm.getName().equalsIgnoreCase("FibonacciIterative")){
+        }else if(algorithm.getName().equalsIgnoreCase("Fibonacci Iterative")){
             tam =10; n = 50;
         }else if(algorithm.getName().equalsIgnoreCase("Linear")){
             tam =10; n = 50;
-        }else if(algorithm.getName().equalsIgnoreCase("HeapSort")){
+        }else if(algorithm.getName().equalsIgnoreCase("Heap Sort")){
             tam = 7 ; n = 12000;
         }else if(algorithm.getName().equalsIgnoreCase("Linearithmic")){
             tam =7; n = 31;
-        }else if(algorithm.getName().equalsIgnoreCase("MergeSort")){
+        }else if(algorithm.getName().equalsIgnoreCase("Merge Sort")){
             tam =7; n = 30000;
         }else if(algorithm.getName().equalsIgnoreCase("Skyline")){
             tam =7; n = 100;
-        }else if(algorithm.getName().equalsIgnoreCase("CatalanNumber")){
+        }else if(algorithm.getName().equalsIgnoreCase("Catalan number")){
             tam =5; n = 400;
-        }else if(algorithm.getName().equalsIgnoreCase("BubleSort")){
-            tam =5; n = 170;
+        }else if(algorithm.getName().equalsIgnoreCase("Buble Sort")){
+            tam =2; n = 2;
         }else if(algorithm.getName().equalsIgnoreCase("Quadratic")){
             tam =4; n = 5;
-        }else if(algorithm.getName().equalsIgnoreCase("SelectionSort")){
+        }else if(algorithm.getName().equalsIgnoreCase("Selection Sort")){
             tam =6; n = 90;
         }else if(algorithm.getName().equalsIgnoreCase("Cubic")){
             tam =4; n = 2;
         }else if(algorithm.getName().equalsIgnoreCase("Floyd")){
             tam =4; n = 37;
-        }else if(algorithm.getName().equalsIgnoreCase("MatrixMultiplication")){
+        }else if(algorithm.getName().equalsIgnoreCase("Matrix multiplication")){
             tam =4; n = 120;
         }else if(algorithm.getName().equalsIgnoreCase("Warshall")){
             tam =4; n = 30;
-        }else if(algorithm.getName().equalsIgnoreCase("BruteForceKnapsack")){
-            tam =2; n = 5;
+        }else if(algorithm.getName().equalsIgnoreCase("Bipartite graph brute force")){
+            tam =10; n = 10;
         }else if(algorithm.getName().equalsIgnoreCase("Exponential")){
             tam =2; n = 3;
-        }else if(algorithm.getName().equalsIgnoreCase("FibonacciRecursive")){
+        }else if(algorithm.getName().equalsIgnoreCase("Fibonacci Recursive")){
             tam =2; n = 11;
-        }else if(algorithm.getName().equalsIgnoreCase("BruteForceKnapsack")){
-            tam =2; n = 2;
+        }else if(algorithm.getName().equalsIgnoreCase("Bruteforce Knapsack")){
+            tam =2; n = 4;
         }
         
         //String[] complexities = {"1","log(n)","n","n*log(n)","n^2","n^3","2^n"};
         long[] times =new long[tam];
         Chronometer chrono = new Chronometer();
         chrono.pause();
-        
+        System.out.println(tam+" "+n);
         long n2;
         for(int i = 1 ; i<=tam;i++){
             n2=n*(i+i);
@@ -180,7 +180,8 @@ public class Analyzer implements Runnable {
             //System.out.println(i);
         }
         //System.out.println();
-        show_times(times);
+        //descomentar para ver tiempos
+       // show_times(times);
         //ya tenemos los tiempos, ahora calcular los resultados teoricos.
 
         long[] tlog= new long[tam];
@@ -201,6 +202,7 @@ public class Analyzer implements Runnable {
         }
         
         //System.out.println(times);
+        /*
         System.out.println("log");
         show_times(tlog);
                         System.out.println("-------------------------");
@@ -227,12 +229,12 @@ public class Analyzer implements Runnable {
 
                 System.out.println("-------------------------");
         System.out.println("");
-        
+        */
 
         String complejidad="1";
-        if((calcularDesviacionTipica(times)/1000) <0.1){
+        if((calcularDesviacionTipica(times)/1000) <=0.1){
             complejidad="1";
-        }else if((double)(tn[tam-1])/1000 <0.0011) {
+        }else if((double)(tn[tam-1])/1000 <0.01) {
             complejidad = "log(n)";
         }else if((double)(tnlogn[tam-1])/1000 <0.001){
             complejidad="n";
